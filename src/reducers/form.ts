@@ -1,31 +1,6 @@
 import { FormActions, Action } from '../actions';
 
-type FormValue = string | boolean;
-
-type FormFieldValidation = (value: FormValue) => boolean;
-
-enum FormFieldType {
-  INPUT = 'input',
-  CHECKBOX = 'checkbox',
-}
-
-interface FormField {
-  id: string;
-  type: FormFieldType;
-  label: string;
-  required: boolean;
-  password: boolean;
-  validation?: FormFieldValidation;
-  placeholder?: FormValue;
-  defaultValue?: FormValue;
-}
-
-type FormPage = {
-  title: string;
-  fields?: FormField[];
-};
-
-type Form = null | FormPage[];
+import { FormValue, FormFieldType, Form } from '../types/form';
 
 const requiredValidation = (value: FormValue) => Boolean(typeof value === 'string' && value.length > 0);
 
