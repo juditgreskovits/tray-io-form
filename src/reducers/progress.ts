@@ -1,6 +1,6 @@
 import { ProgressActions, Action } from '../actions';
 
-const initialState: number = 1;
+const initialState: number = 0;
 
 function progress(state: number = initialState, action: Action<ProgressActions>) {
   switch (action.type) {

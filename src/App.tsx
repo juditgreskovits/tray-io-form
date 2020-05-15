@@ -1,10 +1,14 @@
 import React from 'react';
-import Progress from './containers/Progress';
+import ProgressContainer from './containers/ProgressContainer';
+import FormContainer from './containers/FormContainer';
 
 function App() {
   return (
     <div>
-      <Progress />
+      <ProgressContainer />
+      <FormContainer pageIndex={0} />
+      <FormContainer pageIndex={1} />
+      <FormContainer pageIndex={2} />
     </div>
   );
 }
