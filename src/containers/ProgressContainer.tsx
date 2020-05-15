@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { PageTitle, ProgressBar } from '../components';
+import { PageTitle, PageHeader } from '../components';
 
 import { Form } from '../types/form';
 import { State } from '../types/state';
@@ -12,13 +12,11 @@ interface ProgressContainerProps {
 }
 
 const ProgressContainer = ({ form, progress }: ProgressContainerProps) => {
-  const titles = form.map((formPage, index) => (
-    <PageTitle key={`form-page-title-${index}`} active={index === progress}>
-      {formPage.title}
-    </PageTitle>
+  const titles = form.map(({ title }, index) => (
+    <PageTitle key={`form-page-title-${index}`} active={index === progress} title={title} />
   ));
 
-  return <ProgressBar>{titles}</ProgressBar>;
+  return <PageHeader>{titles}</PageHeader>;
 };
 
 const mapStateToProps = (state: State) => ({

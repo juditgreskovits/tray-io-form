@@ -4,7 +4,7 @@ export interface FormValues {
   [id: string]: string | boolean;
 }
 
-export type FormFieldValidation = (value: FormValue) => boolean;
+export type FormFieldValidation = (value: FormValue) => string | null;
 
 export enum FormFieldType {
   INPUT = 'input',

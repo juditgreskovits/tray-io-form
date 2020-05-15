@@ -2,7 +2,8 @@ import { FormActions, Action } from '../actions';
 
 import { FormValue, FormFieldType, Form } from '../types/form';
 
-const requiredValidation = (value: FormValue) => Boolean(typeof value === 'string' && value.length > 0);
+const requiredValidation = (value: FormValue) =>
+  typeof value === 'string' && value.length > 0 ? 'Meow' : 'This is a required field';
 
 const initialState: Form = [
   {
@@ -62,7 +63,7 @@ const initialState: Form = [
   },
   {
     title: 'Done',
-    message: 'Please verify your email address, you shoudl have received an email from us already!',
+    message: 'Please verify your email address, you should have received an email from us already!',
   },
 ];
 
