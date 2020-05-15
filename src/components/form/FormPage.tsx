@@ -16,6 +16,7 @@ interface FormFields {
 
 interface FormPageState {
   fields: FormFields;
+  attempted: boolean;
 }
 
 class FormPage extends Component<FormPageProps, FormPageState> {
@@ -33,15 +34,19 @@ class FormPage extends Component<FormPageProps, FormPageState> {
 
     this.state = {
       fields: initialFields,
+      attempted: false,
     };
   }
 
   handleChange = (event: SyntheticEvent) => {
     const target = event.target as HTMLInputElement;
     const value = target.type === FormFieldType.CHECKBOX ? target.checked : target.value;
+    const id = target.name;
+    const { attempted } = this.state;
+    const error = attempted ? this.validateField(id, value) : null;
     const fields = {
       ...this.state.fields,
-      [target.name]: { value, error: null }, // TODO update
+      [id]: { value, error },
     };
     this.setState({
       fields,
@@ -51,7 +56,7 @@ class FormPage extends Component<FormPageProps, FormPageState> {
   handleSubmit = (event: SyntheticEvent) => {
     event.preventDefault();
 
-    const { valid, errorFields } = this.validate();
+    const { valid, errorFields } = this.validateForm();
 
     if (valid) {
       const { onSubmit } = this.props;
@@ -66,11 +71,18 @@ class FormPage extends Component<FormPageProps, FormPageState> {
           ...this.state.fields,
           ...errorFields,
         },
+        attempted: true,
       });
     }
   };
 
-  validate() {
+  validateField(id: string, value: FormValue) {
+    const { fields } = this.props;
+    const field = fields.find(field => field.id === id);
+    return field && field.validation ? field.validation(value) : null;
+  }
+
+  validateForm() {
     const { fields } = this.props;
     return fields.reduce(
       (result, { id, validation }) => {

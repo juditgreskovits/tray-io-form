@@ -26,11 +26,7 @@ class FormContainer extends Component<FormContainerProps> {
 
   logValues() {
     const { values } = this.props;
-    let log = 'Submitted values: \n{';
-    Object.entries(values).forEach(([key, value]) => {
-      log = `${log} \n  ${key}: ${value}`;
-    });
-    log = `${log} \n};`;
+    const log = JSON.stringify(values, null, 2);
     console.log(log);
   }
 

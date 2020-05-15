@@ -1,9 +1,6 @@
 import { FormActions, Action } from '../actions';
-
-import { FormValue, FormFieldType, Form } from '../types/form';
-
-const requiredValidation = (value: FormValue) =>
-  typeof value === 'string' && value.length > 0 ? 'Meow' : 'This is a required field';
+import { requiredValidation, emailValidation, passwordValidation } from '../utils/validations';
+import { FormFieldType, Form } from '../types/form';
 
 const initialState: Form = [
   {
@@ -29,7 +26,7 @@ const initialState: Form = [
         type: FormFieldType.INPUT,
         label: 'Your email',
         required: true,
-        validation: requiredValidation,
+        validation: emailValidation,
         defaultValue: '',
       },
       {
@@ -37,7 +34,7 @@ const initialState: Form = [
         type: FormFieldType.PASSWORD,
         label: 'Your password',
         required: true,
-        validation: requiredValidation,
+        validation: passwordValidation,
         defaultValue: '',
       },
     ],
