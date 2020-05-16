@@ -3,13 +3,16 @@ import { FormValue } from '../types/form';
 
 export const requiredValidation = (value: FormValue) => {
   const valid = string().required().isValidSync(value);
-  console.log('valid = ', valid);
   return valid ? null : 'This is a required field';
 };
 
 export const emailValidation = (value: FormValue) => {
   const error = requiredValidation(value);
-  return error ? error : string().email().isValidSync(value) ? null : 'Please enter a valid email address';
+  return error
+    ? error
+    : string().email().isValidSync(value)
+    ? null
+    : 'Please enter a valid email address';
 };
 
 export const passwordValidation = (value: FormValue) => {

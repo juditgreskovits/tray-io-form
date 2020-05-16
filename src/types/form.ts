@@ -25,6 +25,7 @@ export type FormPage = {
   title: string;
   fields?: FormField[];
   message?: string;
+  submit?: { label: string };
 };
 
 export type Form = FormPage[];

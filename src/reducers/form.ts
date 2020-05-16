@@ -37,6 +37,9 @@ const initialState: Form = [
         defaultValue: '',
       },
     ],
+    submit: {
+      label: 'Next',
+    },
   },
   {
     title: 'Privacy',
@@ -56,6 +59,9 @@ const initialState: Form = [
         defaultValue: false,
       },
     ],
+    submit: {
+      label: 'Submit',
+    },
   },
   {
     title: 'Done',

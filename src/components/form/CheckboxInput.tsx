@@ -69,24 +69,21 @@ interface CheckboxInputProps extends FormField {
   error: string | null;
 }
 
-const CheckboxInput = ({ id, label, required, value, error, onChange }: CheckboxInputProps) => {
-  console.log('value = ', value);
-  return (
-    <StyledCheckboxInputContainer>
-      <StyledCheckbox
-        id={id}
-        name={id}
-        required={required}
-        checked={value === true}
-        type="checkbox"
-        onChange={onChange}
-      />
-      <Label required={required} htmlFor={id}>
-        {label}
-      </Label>
-      <Error>{error}</Error>
-    </StyledCheckboxInputContainer>
-  );
-};
+const CheckboxInput = ({ id, label, required, value, error, onChange }: CheckboxInputProps) => (
+  <StyledCheckboxInputContainer>
+    <StyledCheckbox
+      id={id}
+      name={id}
+      required={required}
+      checked={value === true}
+      type="checkbox"
+      onChange={onChange}
+    />
+    <Label required={required} htmlFor={id}>
+      {label}
+    </Label>
+    <Error>{error}</Error>
+  </StyledCheckboxInputContainer>
+);
 
 export default CheckboxInput;

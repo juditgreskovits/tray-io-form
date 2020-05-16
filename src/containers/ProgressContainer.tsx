@@ -25,3 +25,4 @@ const mapStateToProps = (state: State) => ({
 });
 
 export default connect(mapStateToProps)(ProgressContainer);
+export { ProgressContainer };

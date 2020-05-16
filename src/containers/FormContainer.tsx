@@ -37,36 +37,43 @@ class FormContainer extends Component<FormContainerProps> {
     nextPage();
   };
 
-  renderForm: RenderForm = ({ onChange, onSubmit, fieldsState, fields }) => {
-    const formFields = fields.map(field => {
-      const { value, error } = fieldsState[field.id];
+  renderForm: RenderForm = ({ onChange, onSubmit, fieldsState }) => {
+    const { form, pageIndex } = this.props;
+    const { fields, submit } = form[pageIndex];
 
-      return field.type === FormFieldType.CHECKBOX ? (
-        <CheckboxInput key={field.id} onChange={onChange} value={value} error={error} {...field} />
-      ) : (
-        <TextInput key={field.id} onChange={onChange} value={value} error={error} {...field} />
-      );
-    });
-
-    const { pageIndex, form } = this.props;
-    const submitLabel = pageIndex < form.length - 2 ? 'Next' : 'Submit';
+    const formFields =
+      fields &&
+      fields.map(field => {
+        const { value, error } = fieldsState[field.id];
+        const InputComponent = field.type === FormFieldType.CHECKBOX ? CheckboxInput : TextInput;
+        return (
+          <InputComponent
+            key={field.id}
+            onChange={onChange}
+            value={value}
+            error={error}
+            {...field}
+          />
+        );
+      });
 
     return (
       <form onSubmit={onSubmit} noValidate={true}>
         {formFields}
-        <Submit label={submitLabel} />
+        {submit && <Submit label={submit.label} />}
       </form>
     );
   };
 
   render() {
     const { form, progress, pageIndex } = this.props;
-    if (progress === pageIndex) {
-      const page = form[pageIndex];
-      const message = page.message;
-      const fields = page.fields;
+
+    if (progress === pageIndex && form && form.length && pageIndex < form.length) {
+      const { fields, message } = form[pageIndex];
       const formMessage = message && <Message message={message} />;
-      const formPage = fields && <FormPage fields={fields} renderForm={this.renderForm} onSubmit={this.handleSubmit} />;
+      const formPage = fields && (
+        <FormPage fields={fields} renderForm={this.renderForm} onSubmit={this.handleSubmit} />
+      );
 
       return (
         <Layout>
@@ -80,7 +87,7 @@ class FormContainer extends Component<FormContainerProps> {
 }
 
 const mapStateToProps = (state: State) => ({
-  form: state.form as Form,
+  form: state.form,
   progress: state.progress,
   values: state.values,
 });
@@ -91,3 +98,4 @@ const mapDispatchToProps = {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(FormContainer);
+export { FormContainer };
