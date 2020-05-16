@@ -11,8 +11,6 @@ const StyledCheckboxInputContainer = styled.div`
   padding-bottom: 1rem;
 `;
 
-const StyledCheckboxInputLabel = styled(Label)``;
-
 const StyledCheckbox = styled.input`
   position: absolute;
   opacity: 0;
@@ -20,26 +18,39 @@ const StyledCheckbox = styled.input`
   & + label {
     position: relative;
     cursor: pointer;
+    margin-left: 40px;
     padding: 0;
   }
 
   & + label:before {
+    position: absolute;
+    top: -4px;
+    left: -40px;
     content: '';
-    margin-right: 1rem;
-    display: inline-block;
-    vertical-align: text-top;
-    width: 16px;
-    height: 16px;
-    background-color: ${({ theme }) => theme.colours.light};
-    border: ${({ theme }) => `1px solid ${theme.colours.brand}`};
+    width: 24px;
+    height: 24px;
+    background-color: ${({ theme }) => theme.colours.grey};
   }
 
-  &:hover + label:before {
-    background-color: ${({ theme }) => theme.colours.brand};
+  & + label:after {
+    content: '';
+    position: absolute;
+    left: -36px;
+    top: 2px;
+    width: 12px;
+    height: 5px;
+    border-left: 3px solid white;
+    border-bottom: 3px solid white;
+    transform: rotate(-45deg);
+    opacity: 0;
+  }
+
+  &:hover + label:after {
+    opacity: 0.5;
   }
 
   &:focus + label:before {
-    box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.12);
+    box-shadow: ${({ theme }) => theme.border.shadow};
   }
 
   &:checked + label:before {
@@ -47,15 +58,7 @@ const StyledCheckbox = styled.input`
   }
 
   &:checked + label:after {
-    content: '';
-    position: absolute;
-    left: 4px;
-    top: 8px;
-    background: white;
-    width: 2px;
-    height: 2px;
-    box-shadow: 2px 0 0 white, 4px 0 0 white, 4px -2px 0 white, 4px -4px 0 white, 4px -6px 0 white, 4px -8px 0 white;
-    transform: rotate(45deg);
+    opacity: 1;
   }
 `;
 
@@ -70,7 +73,14 @@ const CheckboxInput = ({ id, label, required, value, error, onChange, renderErro
   console.log('value = ', value);
   return (
     <StyledCheckboxInputContainer>
-      <StyledCheckbox name={id} required={required} checked={value === true} type="checkbox" onChange={onChange} />
+      <StyledCheckbox
+        id={id}
+        name={id}
+        required={required}
+        checked={value === true}
+        type="checkbox"
+        onChange={onChange}
+      />
       <Label required={required} htmlFor={id}>
         {label}
       </Label>

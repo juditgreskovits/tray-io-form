@@ -15,10 +15,11 @@ const StyledTextInput = styled.input<{ error: string | null }>`
   padding: 0.8em 1em;
   font-size: 1.4rem;
   border: ${({ theme, error }) => (error ? `1px solid ${theme.colours.brand}` : `1px solid ${theme.colours.grey}`)};
-  transition: border 0.3s ease;
+  transition: ${({ theme }) => theme.border.transition};
   &:focus {
     outline: none;
     border: ${({ theme, error }) => (error ? `1px solid ${theme.colours.brand}` : `1px solid ${theme.colours.dark}`)};
+    box-shadow: ${({ theme }) => theme.border.shadow};
   }
 `;
 
@@ -46,10 +47,11 @@ const TextInput = ({
       {label}
     </Label>
     <StyledTextInput
-      error={error}
+      id={id}
       name={id}
       required={required}
       value={value.toString()}
+      error={error}
       type={type}
       onChange={onChange}
     />

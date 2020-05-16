@@ -13,6 +13,8 @@ const theme = {
   },
   border: {
     radius: '4px',
+    transition: 'box-shadow 0.3s ease',
+    shadow: '0 0 3px 3px rgba(255, 105, 180, 0.36)',
   },
   layout: {
     maxWidth: '568px',

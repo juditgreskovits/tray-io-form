@@ -14,10 +14,12 @@ const StyledSubmit = styled.input`
   font-size: 1.6rem;
   font-weight: bold;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: ${({ theme }) => theme.border.transition};
 
-  &:hover {
-    background-color: ${({ theme }) => theme.colours.dark};
+  &:hover,
+  &:focus {
+    outline: none;
+    box-shadow: ${({ theme }) => theme.border.shadow};
   }
 `;
 
