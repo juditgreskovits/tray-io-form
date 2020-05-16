@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import { setValues, nextPage } from '../actions';
-import { FormPage, Message } from '../components';
+import { FormPage, Layout, Message } from '../components';
 
 import { Form, FormValues } from '../types/form';
 import { State } from '../types/state';
@@ -43,13 +43,14 @@ class FormContainer extends Component<FormContainerProps> {
       const message = page.message;
       const fields = page.fields;
       const formMessage = message && <Message message={message} />;
-      const formPage = fields && <FormPage fields={fields} onSubmit={this.handleSubmit} />;
+      const submitLabel = pageIndex < form.length - 1 ? 'Next' : 'Submit';
+      const formPage = fields && <FormPage fields={fields} onSubmit={this.handleSubmit} submitLabel={submitLabel} />;
 
       return (
-        <>
+        <Layout>
           {formMessage}
           {formPage}
-        </>
+        </Layout>
       );
     }
     return null;

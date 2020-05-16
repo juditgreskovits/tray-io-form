@@ -4,7 +4,9 @@ import { TextInput, CheckboxInput, Submit, Error } from './';
 
 interface FormPageProps {
   onSubmit: (values: FormValues) => void;
+
   fields: FormField[];
+  submitLabel: string;
 }
 
 interface FormFields {
@@ -103,7 +105,7 @@ class FormPage extends Component<FormPageProps, FormPageState> {
   }
 
   render() {
-    const { fields } = this.props;
+    const { fields, submitLabel } = this.props;
     const formFields = fields.map(field => {
       const { value, error } = this.state.fields[field.id];
 
@@ -128,9 +130,9 @@ class FormPage extends Component<FormPageProps, FormPageState> {
       );
     });
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form onSubmit={this.handleSubmit} noValidate={true}>
         {formFields}
-        <Submit label="Submit" />
+        <Submit label={submitLabel} />
       </form>
     );
   }

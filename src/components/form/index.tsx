@@ -3,6 +3,8 @@ import CheckboxInput from './CheckboxInput';
 import Submit from './Submit';
 import Message from './Message';
 import Error from './Error';
+import Label from './Label';
+import Layout from './Layout';
 import FormPage from './FormPage';
 
-export { TextInput, CheckboxInput, Submit, Message, Error, FormPage };
+export { TextInput, CheckboxInput, Submit, Message, Error, Label, Layout, FormPage };

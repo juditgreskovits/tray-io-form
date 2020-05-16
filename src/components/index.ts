@@ -1,3 +1,3 @@
 export { PageTitle, PageHeader } from './progress';
-export { FormPage, Message } from './form';
-export { Layout } from './layout';
+export { FormPage, Message, Layout } from './form';
+export { AppTheme } from './theme';

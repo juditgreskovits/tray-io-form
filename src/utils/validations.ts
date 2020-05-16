@@ -12,12 +12,13 @@ export const emailValidation = (value: FormValue) => {
   return error ? error : string().email().isValidSync(value) ? null : 'Please enter a valid email address';
 };
 
-// > 9, one number, one lower case, one upper case
 export const passwordValidation = (value: FormValue) => {
   const error = requiredValidation(value);
   return error
     ? error
-    : string().min(9).isValidSync(value)
+    : string()
+        .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]{9,}/)
+        .isValidSync(value)
     ? null
     : 'Please enter a password containing a number, an upper case and a lower case letter';
 };
