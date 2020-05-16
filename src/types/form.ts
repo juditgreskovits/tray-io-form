@@ -18,7 +18,6 @@ export interface FormField {
   label: string;
   required: boolean;
   validation?: FormFieldValidation;
-  placeholder?: FormValue;
   defaultValue: FormValue;
 }
 

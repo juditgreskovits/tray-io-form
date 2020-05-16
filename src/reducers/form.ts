@@ -1,4 +1,3 @@
-import { FormActions, Action } from '../actions';
 import { requiredValidation, emailValidation, passwordValidation } from '../utils/validations';
 import { FormFieldType, Form } from '../types/form';
 
@@ -64,13 +63,8 @@ const initialState: Form = [
   },
 ];
 
-function form(state: Form = initialState, action: Action<FormActions, Form>) {
-  switch (action.type) {
-    case FormActions.SET_FORM:
-      return action.payload;
-    default:
-      return state;
-  }
+function form(state: Form = initialState) {
+  return state;
 }
 
 export default form;

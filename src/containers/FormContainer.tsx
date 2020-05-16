@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import { setValues, nextPage } from '../actions';
-import { FormPage, Layout, Message } from '../components';
+import { TextInput, CheckboxInput, Submit, Message, Layout, FormPage } from '../components';
+import { RenderForm } from '../components/form/FormPage';
 
-import { Form, FormValues } from '../types/form';
+import { Form, FormValues, FormFieldType } from '../types/form';
 import { State } from '../types/state';
 
 interface FormContainerProps {
@@ -36,6 +37,28 @@ class FormContainer extends Component<FormContainerProps> {
     nextPage();
   };
 
+  renderForm: RenderForm = ({ onChange, onSubmit, fieldsState, fields }) => {
+    const formFields = fields.map(field => {
+      const { value, error } = fieldsState[field.id];
+
+      return field.type === FormFieldType.CHECKBOX ? (
+        <CheckboxInput key={field.id} onChange={onChange} value={value} error={error} {...field} />
+      ) : (
+        <TextInput key={field.id} onChange={onChange} value={value} error={error} {...field} />
+      );
+    });
+
+    const { pageIndex, form } = this.props;
+    const submitLabel = pageIndex < form.length - 2 ? 'Next' : 'Submit';
+
+    return (
+      <form onSubmit={onSubmit} noValidate={true}>
+        {formFields}
+        <Submit label={submitLabel} />
+      </form>
+    );
+  };
+
   render() {
     const { form, progress, pageIndex } = this.props;
     if (progress === pageIndex) {
@@ -43,8 +66,7 @@ class FormContainer extends Component<FormContainerProps> {
       const message = page.message;
       const fields = page.fields;
       const formMessage = message && <Message message={message} />;
-      const submitLabel = pageIndex < form.length - 1 ? 'Next' : 'Submit';
-      const formPage = fields && <FormPage fields={fields} onSubmit={this.handleSubmit} submitLabel={submitLabel} />;
+      const formPage = fields && <FormPage fields={fields} renderForm={this.renderForm} onSubmit={this.handleSubmit} />;
 
       return (
         <Layout>

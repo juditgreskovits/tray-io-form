@@ -1,12 +1,23 @@
-import React, { Component, SyntheticEvent } from 'react';
+import React, { Component, SyntheticEvent, ReactNode } from 'react';
 import { FormValues, FormValue, FormField, FormFieldType } from '../../types/form';
-import { TextInput, CheckboxInput, Submit, Error } from './';
+
+export interface RenderForm {
+  ({
+    onChange,
+    onSubmit,
+    fieldsState,
+  }: {
+    onChange: (event: SyntheticEvent) => void;
+    onSubmit: (event: SyntheticEvent) => void;
+    fieldsState: FormFields;
+    fields: FormField[];
+  }): ReactNode | ReactNode[];
+}
 
 interface FormPageProps {
   onSubmit: (values: FormValues) => void;
-
   fields: FormField[];
-  submitLabel: string;
+  renderForm: RenderForm;
 }
 
 interface FormFields {
@@ -89,7 +100,6 @@ class FormPage extends Component<FormPageProps, FormPageState> {
     return fields.reduce(
       (result, { id, validation }) => {
         const { value } = this.state.fields[id];
-        console.log(value);
         const e = validation ? validation(value) : null;
         if (e) {
           result.errorFields[id] = {
@@ -105,36 +115,14 @@ class FormPage extends Component<FormPageProps, FormPageState> {
   }
 
   render() {
-    const { fields, submitLabel } = this.props;
-    const formFields = fields.map(field => {
-      const { value, error } = this.state.fields[field.id];
+    const { renderForm } = this.props;
 
-      return field.type === FormFieldType.CHECKBOX ? (
-        <CheckboxInput
-          key={field.id}
-          onChange={this.handleChange}
-          value={value}
-          error={error}
-          {...field}
-          renderError={error => <Error>{error}</Error>}
-        />
-      ) : (
-        <TextInput
-          key={field.id}
-          onChange={this.handleChange}
-          value={value}
-          error={error}
-          {...field}
-          renderError={error => <Error>{error}</Error>}
-        />
-      );
+    return renderForm({
+      onChange: this.handleChange,
+      onSubmit: this.handleSubmit,
+      fieldsState: this.state.fields,
+      fields: this.props.fields,
     });
-    return (
-      <form onSubmit={this.handleSubmit} noValidate={true}>
-        {formFields}
-        <Submit label={submitLabel} />
-      </form>
-    );
   }
 }
 

@@ -1,3 +1,3 @@
 export { PageTitle, PageHeader } from './progress';
-export { FormPage, Message, Layout } from './form';
+export { TextInput, CheckboxInput, Submit, Message, Layout, FormPage } from './form';
 export { AppTheme } from './theme';

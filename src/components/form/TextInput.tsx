@@ -1,6 +1,7 @@
-import React, { SyntheticEvent, ReactNode } from 'react';
+import React, { SyntheticEvent } from 'react';
 import styled from 'styled-components';
 import Label from './Label';
+import Error from './Error';
 import { FormField } from '../../types/form';
 
 const StyledTextInputContainer = styled.div`
@@ -27,21 +28,9 @@ interface InputProps extends FormField {
   onChange: (event: SyntheticEvent) => void;
   value: string | boolean;
   error: string | null;
-  renderError: (error: string | null) => ReactNode;
 }
 
-const TextInput = ({
-  id,
-  type,
-  label,
-  required,
-  value,
-  error,
-  placeholder,
-  defaultValue,
-  onChange,
-  renderError,
-}: InputProps) => (
+const TextInput = ({ id, type, label, required, value, error, onChange }: InputProps) => (
   <StyledTextInputContainer>
     <Label required={required} htmlFor={id}>
       {label}
@@ -55,7 +44,7 @@ const TextInput = ({
       type={type}
       onChange={onChange}
     />
-    {renderError(error)}
+    <Error>{error}</Error>
   </StyledTextInputContainer>
 );
 
