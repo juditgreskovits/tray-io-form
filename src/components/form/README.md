@@ -1,6 +1,6 @@
-# Form components documentation
+## Form components documentation
 
-## TextInput component
+### TextInput component
 
 Component for text and password input within a form. Renders:
 
@@ -8,7 +8,7 @@ Component for text and password input within a form. Renders:
 - text / password input element
 - error message if there's any
 
-### Usage and props
+#### Usage and props
 
 ```
 import { TextInput } from 'src/components/form';
@@ -27,7 +27,7 @@ import { TextInput } from 'src/components/form';
 
 ---
 
-## CheckboxInput component
+### CheckboxInput component
 
 Component for toggle input within a form. Renders:
 
@@ -35,7 +35,7 @@ Component for toggle input within a form. Renders:
 - checkbox input element
 - error message if there's any
 
-### Usage and props
+#### Usage and props
 
 ```
 import { CheckboxInput } from 'src/components/form';
@@ -53,14 +53,14 @@ import { CheckboxInput } from 'src/components/form';
 
 ---
 
-## Label component
+### Label component
 
 Component for displaying a label for a form input.
 
 - rendered by the TextInput and CheckboxInput components
 - can also be used independently
 
-### Usage and props
+#### Usage and props
 
 ```
 import { Label } from 'src/components/form';
@@ -74,14 +74,14 @@ import { Label } from 'src/components/form';
 
 ---
 
-## Error component
+### Error component
 
 Component for displaying an error for a form input.
 
 - rendered by the TextInput and CheckboxInput components
 - can also be used independently
 
-### Usage and props
+#### Usage and props
 
 ```
 import { Error } from 'src/components/form';
@@ -93,14 +93,14 @@ import { Error } from 'src/components/form';
 
 ---
 
-## Submit component
+### Submit component
 
 Component for submitting the form.
 
 - rendered by the TextInput and CheckboxInput components
 - can also be used independently
 
-### Usage and props
+#### Usage and props
 
 ```
 import { Submit } from 'src/components/form';
@@ -112,7 +112,7 @@ import { Submit } from 'src/components/form';
 
 ---
 
-## Form component
+### Form component
 
 Component for managing the form.
 
@@ -122,7 +122,7 @@ Component for managing the form.
 - validates each field as its value changes thereafter
 - passes values on from inputs once the form is valid
 
-### Usage and props
+#### Usage and props
 
 ```
 import { Submit } from 'src/components/form';
@@ -152,11 +152,11 @@ import { Submit } from 'src/components/form';
 
 ---
 
-## Layout component
+### Layout component
 
 Component for laying out form elements.
 
-### Usage and props
+#### Usage and props
 
 ```
 import { Layout } from 'src/components/form';
@@ -168,11 +168,11 @@ import { Layout } from 'src/components/form';
 
 ---
 
-## Message component
+### Message component
 
 Component for displaying a paragraph of text within the form.
 
-### Usage and props
+#### Usage and props
 
 ```
 import { Message } from 'src/components/form';

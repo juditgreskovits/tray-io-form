@@ -1,6 +1,6 @@
 # Tray.io code exercise
 
-## Setup
+### Setup
 
 Clone the repository
 
@@ -24,7 +24,7 @@ npm run start
 
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser
 
-## Tests
+### Tests
 
 Run unit tests
 
@@ -36,7 +36,9 @@ npm run test
 
 Read the [Components overview](src/components/README.md) or go directly to:
 
-- [Form Components Documentation](form/README.md)
+- [Form Components Documentation](components/form/README.md)
+- [Progress Components Documentation](components/progress/README.md)
+- Visit the [Theming component documentation](components/theme/README.md) for more.
 
 ## Notes
 
