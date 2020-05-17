@@ -47,13 +47,13 @@ The project was bootstrapped with [Create React App](https://github.com/facebook
 
 ### Application outline
 
-The application is driven by data structure that describes the form's pages and the content of each page. This approach was chosen to ensure the application is easily extensible.
+The application is driven by a data structure that describes the form's pages and the content of each page. This approach was chosen to ensure the application is easily extensible.
 
 #### Redux store structure, reducers and actions
 
 [**form reducer**](src/reducers/form.ts)
 
-- assigns the form descriptor data to the Redux store
+- assigns the above mentioned form descriptor data to the Redux store
 
 [**progress reducer**](src/reducers/progress.ts)
 
