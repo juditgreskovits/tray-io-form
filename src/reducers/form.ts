@@ -1,13 +1,13 @@
 import { requiredValidation, emailValidation, passwordValidation } from '../utils/validations';
-import { FormFieldType, Form } from '../types/form';
+import { FormFieldType, FormDescriptor } from '../types/form';
 
-const initialState: Form = [
+const initialState: FormDescriptor = [
   {
     title: 'User',
     fields: [
       {
         id: 'name',
-        type: FormFieldType.INPUT,
+        type: FormFieldType.TEXT,
         label: 'Your name',
         required: true,
         validation: requiredValidation,
@@ -15,14 +15,14 @@ const initialState: Form = [
       },
       {
         id: 'role',
-        type: FormFieldType.INPUT,
+        type: FormFieldType.TEXT,
         label: 'Your desired role',
         required: false,
         defaultValue: '',
       },
       {
         id: 'email',
-        type: FormFieldType.INPUT,
+        type: FormFieldType.TEXT,
         label: 'Your email',
         required: true,
         validation: emailValidation,
@@ -69,7 +69,7 @@ const initialState: Form = [
   },
 ];
 
-function form(state: Form = initialState) {
+function form(state: FormDescriptor = initialState) {
   return state;
 }
 

@@ -1,17 +1,6 @@
-import { Component, SyntheticEvent, ReactNode } from 'react';
+import { Component, SyntheticEvent } from 'react';
 import { FormValues, FormValue, FormField, FormFieldType } from '../../types/form';
-
-export interface RenderForm {
-  ({
-    onChange,
-    onSubmit,
-    fieldsState,
-  }: {
-    onChange: (event: SyntheticEvent) => void;
-    onSubmit: (event: SyntheticEvent) => void;
-    fieldsState: FormFields;
-  }): ReactNode | ReactNode[];
-}
+import { RenderForm, FormFields } from '../../types/components';
 
 interface FormPageProps {
   onSubmit: (values: FormValues) => void;
@@ -19,19 +8,12 @@ interface FormPageProps {
   renderForm: RenderForm;
 }
 
-interface FormFields {
-  [id: string]: {
-    value: FormValue;
-    error: string | null;
-  };
-}
-
-interface FormPageState {
+interface FormState {
   fields: FormFields;
   attempted: boolean;
 }
 
-class FormPage extends Component<FormPageProps, FormPageState> {
+class Form extends Component<FormPageProps, FormState> {
   constructor(props: FormPageProps) {
     super(props);
 
@@ -124,4 +106,4 @@ class FormPage extends Component<FormPageProps, FormPageState> {
   }
 }
 
-export default FormPage;
+export default Form;

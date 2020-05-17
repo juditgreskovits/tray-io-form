@@ -7,7 +7,7 @@ export interface FormValues {
 export type FormFieldValidation = (value: FormValue) => string | null;
 
 export enum FormFieldType {
-  INPUT = 'input',
+  TEXT = 'text',
   PASSWORD = 'password',
   CHECKBOX = 'checkbox',
 }
@@ -28,4 +28,4 @@ export type FormPage = {
   submit?: { label: string };
 };
 
-export type Form = FormPage[];
+export type FormDescriptor = FormPage[];

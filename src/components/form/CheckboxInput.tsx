@@ -1,8 +1,7 @@
-import React, { SyntheticEvent } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import Label from './Label';
-import Error from './Error';
-import { FormField } from '../../types/form';
+import { Label, Error } from './';
+import { InputProps } from '../../types/components';
 
 const StyledCheckboxInputContainer = styled.div`
   position: relative;
@@ -63,13 +62,7 @@ const StyledCheckbox = styled.input`
   }
 `;
 
-interface CheckboxInputProps extends FormField {
-  onChange: (event: SyntheticEvent) => void;
-  value: string | boolean;
-  error: string | null;
-}
-
-const CheckboxInput = ({ id, label, required, value, error, onChange }: CheckboxInputProps) => (
+const CheckboxInput = ({ id, label, required, value, error, onChange }: InputProps) => (
   <StyledCheckboxInputContainer>
     <StyledCheckbox
       id={id}
@@ -79,10 +72,8 @@ const CheckboxInput = ({ id, label, required, value, error, onChange }: Checkbox
       type="checkbox"
       onChange={onChange}
     />
-    <Label required={required} htmlFor={id}>
-      {label}
-    </Label>
-    <Error>{error}</Error>
+    <Label required={required} htmlFor={id} label={label} />
+    {error && <Error message={error} />}
   </StyledCheckboxInputContainer>
 );
 

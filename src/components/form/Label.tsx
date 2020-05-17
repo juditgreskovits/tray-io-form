@@ -1,3 +1,4 @@
+import React from 'react';
 import styled from 'styled-components';
 
 const StyledInputLabel = styled.label<{ required: boolean }>`
@@ -13,4 +14,16 @@ const StyledInputLabel = styled.label<{ required: boolean }>`
   `}
 `;
 
-export default StyledInputLabel;
+interface LabelProps {
+  label: string;
+  htmlFor?: string;
+  required: boolean;
+}
+
+const Label = ({ label, htmlFor, required }: LabelProps) => (
+  <StyledInputLabel htmlFor={htmlFor} required={required}>
+    {label}
+  </StyledInputLabel>
+);
+
+export default Label;

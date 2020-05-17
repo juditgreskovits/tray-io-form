@@ -7,7 +7,7 @@ interface SubmitProps {
 
 const StyledSubmit = styled.input`
   margin: 1rem 0;
-  padding: 0.8em 1.6em;
+  padding: 0.8em 2rem;
   background-color: ${({ theme }) => theme.colours.brand};
   color: ${({ theme }) => theme.colours.light};
   border: none;

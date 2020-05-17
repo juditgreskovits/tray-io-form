@@ -1,44 +1,55 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Tray.io code exercise
 
-## Available Scripts
+## Setup
 
-In the project directory, you can run:
+Clone the repository
 
-### `npm start`
+```
+git clone git@github.com:juditgreskovits/tray-io-form.git
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+cd tray-io-form
+```
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+Install dependencies with npm (or use yarn)
 
-### `npm test`
+```
+npm install
+```
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Run the application in development mode
 
-### `npm run build`
+```
+npm run start
+```
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+## Tests
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Run unit tests
 
-### `npm run eject`
+```
+npm run test
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Components
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Read the [Components overview](src/components/README.md) or go directly to:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+- [Form Components Documentation](form/README.md)
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## Notes
 
-## Learn More
+### Open source libraries used
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+#### Some notes on tests
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+The implemented **unit tests** focussed on areas greater complexity and coverage could be increased.
+
+Further tests could be added, _visual regression tests_ / _snapshot tests_ for components and _end to end tests_ for the whole application.
+
+### React App
+
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app)
+
+As such, `npm run build` and `npm run eject` are also available, see at above link

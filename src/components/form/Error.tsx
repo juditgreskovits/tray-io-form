@@ -1,3 +1,4 @@
+import React from 'react';
 import styled from 'styled-components';
 
 const StyledError = styled.small`
@@ -7,4 +8,10 @@ const StyledError = styled.small`
   top: 6.4rem;
 `;
 
-export default StyledError;
+interface ErrorProps {
+  message: string;
+}
+
+const Error = ({ message }: ErrorProps) => <StyledError>{message}</StyledError>;
+
+export default Error;

@@ -2,14 +2,14 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import { setValues, nextPage } from '../actions';
-import { TextInput, CheckboxInput, Submit, Message, Layout, FormPage } from '../components';
-import { RenderForm } from '../components/form/FormPage';
+import { TextInput, CheckboxInput, Submit, Message, Layout, Form } from '../components';
 
-import { Form, FormValues, FormFieldType } from '../types/form';
+import { FormDescriptor, FormValues, FormFieldType } from '../types/form';
+import { RenderForm } from '../types/components';
 import { State } from '../types/state';
 
 interface FormContainerProps {
-  form: Form;
+  form: FormDescriptor;
   progress: number;
   values: FormValues;
   pageIndex: number;
@@ -44,15 +44,19 @@ class FormContainer extends Component<FormContainerProps> {
     const formFields =
       fields &&
       fields.map(field => {
-        const { value, error } = fieldsState[field.id];
-        const InputComponent = field.type === FormFieldType.CHECKBOX ? CheckboxInput : TextInput;
+        const { id, type, label, required } = field;
+        const { value, error } = fieldsState[id];
+        const InputComponent = type === FormFieldType.CHECKBOX ? CheckboxInput : TextInput;
         return (
           <InputComponent
-            key={field.id}
-            onChange={onChange}
+            key={id}
+            id={id}
+            type={type}
+            label={label}
+            required={required}
             value={value}
             error={error}
-            {...field}
+            onChange={onChange}
           />
         );
       });
@@ -72,7 +76,7 @@ class FormContainer extends Component<FormContainerProps> {
       const { fields, message } = form[pageIndex];
       const formMessage = message && <Message message={message} />;
       const formPage = fields && (
-        <FormPage fields={fields} renderForm={this.renderForm} onSubmit={this.handleSubmit} />
+        <Form fields={fields} renderForm={this.renderForm} onSubmit={this.handleSubmit} />
       );
 
       return (

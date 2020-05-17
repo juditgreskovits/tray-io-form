@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { TextInput, CheckboxInput, Submit, Message, Layout, FormPage } from '../components';
+import { TextInput, CheckboxInput, Submit, Message, Layout, Form } from '../components';
 import { FormContainer } from './FormContainer';
 import { FormFieldType } from '../types/form';
 
@@ -16,7 +16,7 @@ describe('FormContainer', () => {
         fields: [
           {
             id: 'input',
-            type: FormFieldType.INPUT,
+            type: FormFieldType.TEXT,
             label: 'Input label',
             required: true,
             defaultValue: '',
@@ -79,7 +79,7 @@ describe('FormContainer', () => {
       expect(wrapper.find(Message)).toHaveLength(1);
     });
     it('renders a form page when fields are defined for the page on the form data', () => {
-      expect(wrapper.find(FormPage)).toHaveLength(1);
+      expect(wrapper.find(Form)).toHaveLength(1);
     });
   });
   describe('logValues', () => {

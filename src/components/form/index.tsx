@@ -5,6 +5,6 @@ import Message from './Message';
 import Error from './Error';
 import Label from './Label';
 import Layout from './Layout';
-import FormPage from './FormPage';
+import Form from './Form';
 
-export { TextInput, CheckboxInput, Submit, Message, Error, Label, Layout, FormPage };
+export { TextInput, CheckboxInput, Submit, Message, Error, Label, Layout, Form };
