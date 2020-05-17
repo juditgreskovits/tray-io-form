@@ -37,6 +37,7 @@ const TextInput = ({ id, type, label, required, value, error, onChange }: InputP
       error={error}
       type={type ? type : FormFieldType.TEXT}
       onChange={onChange}
+      maxLength={50}
     />
     {error && <Error message={error} />}
   </StyledTextInputContainer>
