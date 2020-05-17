@@ -38,7 +38,7 @@ Read the [Components overview](src/components/README.md) or go directly to:
 
 - [Form Components Documentation](components/form/README.md)
 - [Progress Components Documentation](components/progress/README.md)
-- Visit the [Theming component documentation](components/theme/README.md) for more.
+- [Theming Component Documentation](components/theme/README.md)
 
 ## Notes
 

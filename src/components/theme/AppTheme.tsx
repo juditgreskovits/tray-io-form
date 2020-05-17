@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react';
 import { ThemeProvider } from 'styled-components';
 
-const theme = {
+export const theme = {
   font: {
     family: 'Ubuntu, Helvetica, sans-serif',
   },
@@ -25,6 +25,8 @@ interface ThemeProps {
   children: ReactNode | ReactNode[];
 }
 
-const AppTheme = ({ children }: ThemeProps) => <ThemeProvider theme={theme}>{children}</ThemeProvider>;
+const AppTheme = ({ children }: ThemeProps) => (
+  <ThemeProvider theme={theme}>{children}</ThemeProvider>
+);
 
 export default AppTheme;

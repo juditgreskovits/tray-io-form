@@ -16,4 +16,4 @@ Visit the [Progress Components Documentation](progress/README.md) for more.
 
 Component for making styling variables available throughout the app.
 
-Visit the [Theming component documentation](theme/README.md) for more.
+Visit the [Theming Component Documentation](theme/README.md) for more.

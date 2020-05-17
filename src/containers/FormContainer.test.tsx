@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { TextInput, CheckboxInput, Submit, Message, Layout, Form } from '../components';
+import { Message, Layout, Form } from '../components';
 import { FormContainer } from './FormContainer';
 import { FormFieldType } from '../types/form';
 
@@ -29,6 +29,9 @@ describe('FormContainer', () => {
             defaultValue: true,
           },
         ],
+        submit: {
+          label: 'Submit',
+        },
       },
       { title: 'Second title' },
       { title: 'Third title' },
@@ -43,6 +46,7 @@ describe('FormContainer', () => {
     nextPage,
   };
   const wrapper = shallow(<FormContainer {...props} />);
+  const instance = wrapper.instance() as FormContainer;
 
   describe('render', () => {
     it('renders when its pageIndex is equal to progress', () => {
@@ -85,7 +89,7 @@ describe('FormContainer', () => {
   describe('logValues', () => {
     it('console.logs the values supplied via the props', () => {
       const spy = jest.spyOn(console, 'log');
-      wrapper.instance().logValues();
+      instance.logValues();
       expect(spy).toHaveBeenCalledWith(JSON.stringify(props.values, null, 2));
     });
   });
@@ -97,8 +101,8 @@ describe('FormContainer', () => {
         progress: 2,
       };
       const w = shallow(<FormContainer {...p} />);
-      const spy = jest.spyOn(w.instance(), 'logValues');
-      w.instance().componentDidUpdate();
+      const spy = jest.spyOn(w.instance() as FormContainer, 'logValues');
+      (w.instance() as FormContainer).componentDidUpdate();
       expect(spy).toHaveBeenCalled();
     });
     it('does not call logValues on other pages', () => {
@@ -108,15 +112,16 @@ describe('FormContainer', () => {
         progress: 1,
       };
       const w = shallow(<FormContainer {...p} />);
-      const spy = jest.spyOn(w.instance(), 'logValues');
-      w.instance().componentDidUpdate();
+      const i = w.instance() as FormContainer;
+      const spy = jest.spyOn(i, 'logValues');
+      i.componentDidUpdate();
       expect(spy).not.toHaveBeenCalled();
     });
   });
   describe('handleSubmit', () => {
     it('updates the redux store with the form values using actions and requests the next page', () => {
       const values = { key: 'value' };
-      wrapper.instance().handleSubmit(values);
+      instance.handleSubmit(values);
       expect(setValues).toHaveBeenCalledWith(values);
       expect(nextPage).toHaveBeenCalled();
     });

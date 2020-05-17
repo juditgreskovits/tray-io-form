@@ -2,19 +2,19 @@ import { Component, SyntheticEvent } from 'react';
 import { FormValues, FormValue, FormField, FormFieldType } from '../../types/form';
 import { RenderForm, FormFields } from '../../types/components';
 
-interface FormPageProps {
+export interface FormProps {
   onSubmit: (values: FormValues) => void;
   fields: FormField[];
   renderForm: RenderForm;
 }
 
-interface FormState {
+export interface FormState {
   fields: FormFields;
   attempted: boolean;
 }
 
-class Form extends Component<FormPageProps, FormState> {
-  constructor(props: FormPageProps) {
+class Form extends Component<FormProps, FormState> {
+  constructor(props: FormProps) {
     super(props);
 
     const { fields } = this.props;

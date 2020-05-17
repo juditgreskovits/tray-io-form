@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, ReactNode } from 'react';
 import { connect } from 'react-redux';
 
 import { setValues, nextPage } from '../actions';
@@ -43,23 +43,27 @@ class FormContainer extends Component<FormContainerProps> {
 
     const formFields =
       fields &&
-      fields.map(field => {
+      fields.reduce((formFields, field) => {
         const { id, type, label, required } = field;
-        const { value, error } = fieldsState[id];
-        const InputComponent = type === FormFieldType.CHECKBOX ? CheckboxInput : TextInput;
-        return (
-          <InputComponent
-            key={id}
-            id={id}
-            type={type}
-            label={label}
-            required={required}
-            value={value}
-            error={error}
-            onChange={onChange}
-          />
-        );
-      });
+        const fieldState = fieldsState[id];
+        if (fieldState) {
+          const { value, error } = fieldState;
+          const InputComponent = type === FormFieldType.CHECKBOX ? CheckboxInput : TextInput;
+          formFields.push(
+            <InputComponent
+              key={id}
+              id={id}
+              type={type}
+              label={label}
+              required={required}
+              value={value}
+              error={error}
+              onChange={onChange}
+            />
+          );
+        }
+        return formFields;
+      }, [] as ReactNode[]);
 
     return (
       <form onSubmit={onSubmit} noValidate={true}>
