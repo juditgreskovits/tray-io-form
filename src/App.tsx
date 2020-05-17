@@ -12,6 +12,11 @@ const GlobalStyle = createGlobalStyle`
     font-family: ${({ theme }: { theme: Theme }) => theme.font.family};
     font-size: 62.5%;
   }
+
+  input {
+    border-radius: 0;
+    -webkit-appearance: none;
+  }
 `;
 
 function App() {
