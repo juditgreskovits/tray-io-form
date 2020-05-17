@@ -36,9 +36,9 @@ npm run test
 
 Read the [Components overview](src/components/README.md) or go directly to:
 
-- [Form Components Documentation](components/form/README.md)
-- [Progress Components Documentation](components/progress/README.md)
-- [Theming Component Documentation](components/theme/README.md)
+- [Form Components Documentation](src/components/form/README.md)
+- [Progress Components Documentation](src/components/progress/README.md)
+- [Theming Component Documentation](src/components/theme/README.md)
 
 ## Notes
 
